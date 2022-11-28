@@ -1,0 +1,690 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Project Log</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="615ef8f5-c4f4-4d8a-b585-958b9bbabcf6" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">✒️</span></div><h1 class="page-title">Project Log</h1></header><div class="page-body"><p id="e150501d-35ca-4f8c-aac8-a6ae16f306d6" class=""><strong><mark class="highlight-blue">Blue text  - </mark></strong><strong>indicates a task done</strong></p><p id="0b81145a-20b2-4aa7-ac52-30ddb836e590" class=""><strong><mark class="highlight-teal">Green text  - </mark></strong><strong>indicates anything I have learnt reflecting on my work and experience.</strong></p><p id="8ad4c1c8-f23a-4646-812c-12b8d7d2819e" class=""><strong><mark class="highlight-orange">Orange text  - </mark></strong><strong>indicates next steps that need to be taken</strong></p><ul id="ce09d998-d386-42c0-80ff-5743eb95cbc9" class="bulleted-list"><li style="list-style-type:disc"><time>@October 17, 2022</time> <p id="00dcc927-449c-404a-b169-bc844b2ce88e" class="">Did some brainstorming trying to find an Idea for my EPQ</p><figure id="0c245d27-0850-4b57-abc3-21d4df01759b" class="image"><a href="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/mindmap1.png"><img style="width:1296px" src="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/mindmap1.png"/></a><figcaption>My first mindmap including initial ideas for my project</figcaption></figure><figure id="ed99c37f-a9c5-4392-90a9-514c4325a746" class="image"><a href="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/mindmap.png"><img style="width:1488px" src="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/mindmap.png"/></a><figcaption>My second, more detailed mindmap about the specific topic that I had chosen</figcaption></figure><p id="220a0682-5167-4740-a02e-c7088310f284" class="">
+</p></li></ul><ul id="c3c107b7-4830-407a-a3c4-0eddf6f4b9c2" class="bulleted-list"><li style="list-style-type:disc"><time>@October 24, 2022</time> <p id="77ada675-08bd-487b-9e4b-8d6540a0dc93" class=""><strong><mark class="highlight-blue">Built a Fully Connected GAN in PyTorch to generate Handwritten digits. Trained using the MNIST dataset.</mark></strong> Learnt the different functions of the PyTorch Library.</p><p id="4d5b62dd-6265-4bbf-b4d4-e13f099f3c99" class="">PyTorch<div class="indented"><p id="63137d27-0a19-4ac3-b9c9-26d3f172435d" class=""><strong><mark class="highlight-teal">I have learnt that it is very important to understand each functions of the program and roughly understand the methods from PyTorch. This is because later, it will be much easier to understand your code and add comments which can be used as notes if you forget what a piece of code does.</mark></strong><mark class="highlight-teal"> </mark>The PyTorch Library provides a <a href="https://pytorch.org/docs/stable/nn.html">neural network module</a> which lets you create a neural network as a Class</p><pre id="9b4c9d6a-f9f1-47c0-a8bf-3f383532287a" class="code"><code># The discriminator
+class Discriminator(nn.Module):
+    def __init__(self, in_features):
+        super().__init__()
+        self.disc = nn.Sequential(
+            nn.Linear(in_features, 128),
+            nn.LeakyReLU(0.01),
+            nn.Linear(256, 1),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, x):
+        return self.disc(x)</code></pre><p id="01b39cad-e471-403f-810a-e6a3d9d9a386" class="">The <em>Discriminator </em>inherits the PyTorch nn.module which gives the <em>Discriminator</em> class the neural network functionality. nn.Sequential allows us to create the neural network in order of layer ( <em>nnLinear(in_features), 128 </em>) and an activation function ( <em>nn.LeakyRELU(0.01) </em>). The outputs of a layer have to be the same dimensions as the input of the next layer as I learnt when I recieved this runtime error. The runtime error is complaining that it can not multiply the 2 matrices as the dimensions do not match</p><figure id="4016511d-3fe7-4450-9f43-7f42fa2c3aea" class="image"><a href="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/Untitled.png"><img style="width:528px" src="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/Untitled.png"/></a></figure><pre id="fdca0acb-e79f-4153-84b0-860bb364bb15" class="code"><code>
+nn.Linear(in_features, 128),
+nn.LeakyReLU(0.01),
+nn.Linear(256, 1)
+# 128 != 256</code></pre><p id="2f5311e2-7678-437b-b54e-44ef53405632" class="">The 256 indicates the number of inputs which is not the same as the number of outputs of the first Layer (128). PyTorch has built in optimizers for the networks. The role of the <a href="Efficient%20Training%20e935247a6f6a4dbfa67526e4c6c81c6a.html">optimizers </a>is to change the parameters of the model so that it yields better results.</p><p id="ba8891cf-2d49-46cb-bd24-06dd5b58ed8b" class="">This <a href="https://hrsfc-my.sharepoint.com/personal/mv150024_hrsfc_ac_uk/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmv150024%5Fhrsfc%5Fac%5Fuk%2FDocuments%2FEP%2DWKWW22%2DDT4%20Minhal%20Valiya%20Peedikakkal%2FA01%20%2D%20Manage%2Fnumbers%2Egif&amp;parent=%2Fpersonal%2Fmv150024%5Fhrsfc%5Fac%5Fuk%2FDocuments%2FEP%2DWKWW22%2DDT4%20Minhal%20Valiya%20Peedikakkal%2FA01%20%2D%20Manage&amp;ga=1">GIF</a> above shows how the generated data from my neural network changes after every 3 epochs ( triaining iterations). It goes from randomly generated noise to images that look somewhat like digits! However this is obviously not the desired result but an exciting and motivating start. <strong><mark class="highlight-orange">My next step would be to research how I can produce results with a higher quality or I could figure out how I can make training the model faster</mark></strong></p></div></p></li></ul><ul id="659dd185-cac3-4886-9443-bee32806ce92" class="bulleted-list"><li style="list-style-type:disc"><time>@November 1, 2022</time> <p id="6407d4af-67e3-497a-a86e-82a9603c5f88" class=""><strong><mark class="highlight-blue">This week I researched how to efficiently train a neural network quickly and applied some of this new knowledge to the GAN I made last week</mark></strong></p><figure id="e935247a-6f6a-4dbf-a675-26e4c6c81c6a" class="link-to-page"><a href="Efficient%20Training%20e935247a6f6a4dbfa67526e4c6c81c6a.html"><img class="icon" src="https://www.notion.so/icons/hourglass_yellow.svg"/>Efficient Training</a></figure><p id="ae70b7d6-9c43-4a29-a01b-1d9e1d5e4924" class="">This turned out taking way longer than I had expected as I had fallen into many software issues with CUDA. From my research I had learnt that using the GPU would result in faster training speeds. However, when I implemented this into my project, I felt slightly fooled when my results actually showed the CPU consistently outperforming the GPU. </p><p id="709f9f9d-e78b-4ef9-af54-011b2345058f" class="">The research I did helped me learn an important lesson. <strong><mark class="highlight-teal">When doing secondary research it is important to understand the context of the sources as it may heavily affect whether the research is helpful or even applies to your circumstances</mark></strong><strong>. </strong>The research I had done did not apply to my case as I was using input images of 28 by 28 which was significantly smaller in dimension compared to the large images that the researchers were using. For large images the GPU would be much faster than the CPU. I think this research will prove to be crucial later in the project when I am using much larger Images and datasets. </p><p id="d3dd61aa-78fa-4389-8df4-e3bb5f0d4b66" class="">I also did some research on different types and uses of GANs in order to get an idea of the final product. I skimmed through many papers which explore different GAN implementations<div class="indented"><ul id="9dea9464-dddb-4586-a903-11a3386e544b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://arxiv.org/abs/1610.07584v2">Learning a Probabilistic Latent Space of Object Shapes via 3D Generative-Adversarial Modeling</a></li></ul><ul id="42e20457-6ca4-4f62-bdb0-82a4b44476bf" class="bulleted-list"><li style="list-style-type:disc"><a href="https://arxiv.org/abs/1612.05872">3D Shape Induction from 2D Views of Multiple Objects</a></li></ul><ul id="c57f1f4a-ae22-4fee-ab85-cfac95ea6489" class="bulleted-list"><li style="list-style-type:disc"><a href="https://arxiv.org/abs/1609.04802v2">Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network</a></li></ul><ul id="02a05162-93fe-49e2-ad52-00d6a6c7f7b3" class="bulleted-list"><li style="list-style-type:disc"><a href="https://arxiv.org/abs/1609.02612v3">Generating Videos with Scene Dynamics</a></li></ul></div></p><p id="54981cbc-5d39-4e4d-b4bd-da532b6adc34" class="">Out of these, the one that grabbed my attention the most was the first one which involved generating 3D object. It seems to be a very challenging and large task which would make it suitable as an end product. I read the paper and made some brief notes on the architecture and training technique of the network</p><figure id="d3905cb9-fe13-4781-876c-20e2e58737ae" class="image"><a href="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/3D-GAN.png"><img style="width:576px" src="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/3D-GAN.png"/></a></figure></li></ul><p id="d581f302-e90d-420c-86a5-c820c7813c1c" class="">
+</p><ul id="caa371e3-cbde-4ca0-a752-d7f8929c81d7" class="bulleted-list"><li style="list-style-type:disc"><time>@November 11, 2022</time> <p id="858cac23-5390-478f-8b2a-a9f1ec36ca3c" class="">This week I spent my time doing 2 important tasks:<div class="indented"><ul id="14510e1d-c5bd-4ece-a6af-f7a0d1ca0034" class="bulleted-list"><li style="list-style-type:disc"><strong><mark class="highlight-blue">Starting a Course on </mark></strong><strong><mark class="highlight-blue"><a href="https://www.coursera.org/learn/neural-networks-deep-learning">Neural Networks and Deep Learning on coursera</a></mark></strong><strong><mark class="highlight-blue"> and deciding whether it will be a useful resource for my project. The course will widen my knowledge in the math of Neural networks. </mark></strong></li></ul><ul id="84567061-92b7-4255-9e66-f22fb17abb75" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><strong>Organizing my workflow to increase efficiency when experimenting and developing GANs.</strong></mark></li></ul></div></p><p id="0ee9fc6d-fab3-47f4-bb70-5f38b4856413" class="">
+</p><p id="2f2196bb-8a91-4e16-888c-f23d1eadebac" class="">Creating an efficient workflow will allow me to do other activities whilst training networks instead of being occupied by it . My current problem is that I use my laptop for all activites I do, this includes training the model, researching, experimenting with hyperparamaters and studying. When I train my neural network, the GPU is fully utilized leaving my laptop quite slow and unusable for other daily tasks. I plan to not only reduce the load on my laptop so that I can multitask with it, but increase the training speed. Research showed that it would be necessary to either use a free online service such as Google Colab or I would have to manually set up a server with the hardware I have. I decided not to use a free online service as:</p><ul id="099b6d56-78d1-42f8-a744-09c30941987c" class="bulleted-list"><li style="list-style-type:circle">The Cloud hardware is not as performant as the Physical hardware I own</li></ul><ul id="c33bfecd-8434-4c40-bbed-e7be5d368fb9" class="bulleted-list"><li style="list-style-type:circle">There is normally some sort of hardware limitation (Storage space most of the time)</li></ul><ul id="24ef0683-7ddd-4f3d-a3f1-a8893a0e42f8" class="bulleted-list"><li style="list-style-type:circle">It is very inflexible. I am stuck with the google version of Jupyter notebooks which I dislike. If I want to add data from my device It would take some time.</li></ul><p id="1eb8478f-ecb0-483f-af76-ec5c77a71cf5" class="">The alternative was to use my home computer as a Jupyter notebook server. I used the <a href="Source%20Tracker%208d9d8dc256784234a7cd56755433a870.html">jupyter notebook documentation</a> to guide me in setting up the server. Now I am able to run python remotely from my laptop onto my PC, the jupyter notebook server provides a web interface to work on</p><figure id="6a2509f3-ba6e-4f28-96f9-fae9c61a0a1e" class="image"><a href="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/Untitled%201.png"><img style="width:1056px" src="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/Untitled%201.png"/></a><figcaption>Accessing my program files on my jupyter notebook server</figcaption></figure><p id="dd44fa2d-c555-417a-8e6c-4926c3141d77" class="">By simply entering my PCs local IP address and the port number the server is running on as the URL for the webpage, I recieve a jupyter notebook webpage which allows me to edit and run programs on my PC from my laptop. It is important to make sure the temperature is monitored and maintained as it is well known that a <a href="https://www.faqsclear.com/what-temperature-can-damage-a-gpu/">high temperature can damage the components</a>. Therefore I use the computer monitor to display nvtop which is a program which shows me real time statistics on the GPU</p><figure id="10fcfd88-1fa7-4a4c-a74c-500544185552" class="image"><a href="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/Untitled%202.png"><img style="width:1056px" src="Project%20Log%20615ef8f5c4f44d8ab585958b9bbabcf6/Untitled%202.png"/></a><figcaption>nvtop running on the ubuntu terminal</figcaption></figure></li></ul><p id="9eb00696-9ea8-44ab-8312-42c1cc4717a2" class="">
+</p><ul id="b45a4c94-17fe-4ed9-a8fe-7061bf30a0c0" class="bulleted-list"><li style="list-style-type:disc"><time>@November 21, 2022</time> <p id="2f18e21a-8ccd-4080-b1e6-242a40816061" class="">This week I spent my time </p></li></ul><p id="df5ef632-f75d-45cb-8e4f-c38f2df61134" class="">
+</p></div></article></body></html>
