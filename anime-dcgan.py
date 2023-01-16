@@ -35,7 +35,7 @@ import os
 
 DATA_DIR = 'animefacedataset/'
 
-image_size = 128
+image_size = 64
 batch_size = 128
 latent_size = 128
 stats = (0.5, 0.5, 0.5), (0.5, 0.5, 0.5)
@@ -49,32 +49,27 @@ def denorm(img_tensors):
 
 discriminator = nn.Sequential(
     # input: 3 x 128 x 128
-    nn.Conv2d(3, 128, kernel_size=4, stride=2, padding=1, bias=False),
-    nn.BatchNorm2d(128),
+    nn.Conv2d(3, 64, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.BatchNorm2d(64),
     nn.LeakyReLU(0.2, inplace=True),
     # output: 128 x 64 x 64
 
-    nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.Conv2d(64, 128, kernel_size=4, stride=2, padding=1, bias=False),
     nn.BatchNorm2d(256),
     nn.LeakyReLU(0.2, inplace=True),
     # out: 256 x 32 x 32
 
-    nn.Conv2d(256, 512, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=1, bias=False),
     nn.BatchNorm2d(512),
     nn.LeakyReLU(0.2, inplace=True),
     # out: 512 x 16 x 16
 
-    nn.Conv2d(512, 1024, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.Conv2d(256, 512, kernel_size=4, stride=2, padding=1, bias=False),
     nn.BatchNorm2d(1024),
-    nn.LeakyReLU(0.2, inplace=True),
-    # out: 1024 x 8 x 8
-
-    nn.Conv2d(1024, 2048, kernel_size=4, stride=2, padding=1, bias=False),
-    nn.BatchNorm2d(2048),
     nn.LeakyReLU(0.2, inplace=True),
     # out: 2048 x 4 x 4
 
-    nn.Conv2d(2048, 1, kernel_size=4, stride=1, padding=0, bias=False),
+    nn.Conv2d(512, 1, kernel_size=4, stride=1, padding=0, bias=False),
     # out: 1 x 1 x 1
 
     nn.Flatten(),
@@ -84,32 +79,27 @@ discriminator = nn.Sequential(
 generator = nn.Sequential(
     # in: latent_size x 1 x 1
 
-    nn.ConvTranspose2d(latent_size, 2048, kernel_size=4, stride=1, padding=0, bias=False),
-    nn.BatchNorm2d(2048),
-    nn.ReLU(True),
-    # out: 512 x 4 x 4
-
-    nn.ConvTranspose2d(2048, 1024, kernel_size=4, stride=2, padding=1, bias=False),
-    nn.BatchNorm2d(1024),
-    nn.ReLU(True),
-    # out: 256 x 8 x 8
-
-    nn.ConvTranspose2d(1024, 512, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.ConvTranspose2d(latent_size, 512, kernel_size=4, stride=1, padding=0, bias=False),
     nn.BatchNorm2d(512),
     nn.ReLU(True),
-    # out: 128 x 16 x 16
+    # out: 512 x 4 x 4
 
     nn.ConvTranspose2d(512, 256, kernel_size=4, stride=2, padding=1, bias=False),
     nn.BatchNorm2d(256),
     nn.ReLU(True),
-    # out: 64 x 32 x 32
+    # out: 256 x 8 x 8
 
     nn.ConvTranspose2d(256, 128, kernel_size=4, stride=2, padding=1, bias=False),
     nn.BatchNorm2d(128),
     nn.ReLU(True),
+    # out: 128 x 16 x 16
+
+    nn.ConvTranspose2d(128, 64, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.BatchNorm2d(64),
+    nn.ReLU(True),
     # out: 64 x 32 x 32
 
-    nn.ConvTranspose2d(128, 3, kernel_size=4, stride=2, padding=1, bias=False),
+    nn.ConvTranspose2d(64, 3, kernel_size=4, stride=2, padding=1, bias=False),
     nn.Tanh()
     # out: 3 x 64 x 64
 ).to(device)
