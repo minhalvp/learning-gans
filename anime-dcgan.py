@@ -16,10 +16,10 @@
 #     for images, _ in dl:
 #         show_images(images, nmax)
 #         break`
-# import opendatasets as od
+import opendatasets as od
 
-# dataset_url = 'https://www.kaggle.com/splcher/animefacedataset'
-# od.download(dataset_url)
+dataset_url = 'https://www.kaggle.com/splcher/animefacedataset'
+od.download(dataset_url)
 
 import torch
 import torch.nn as nn
@@ -47,7 +47,7 @@ train_dl = DataLoader(train_ds, batch_size, shuffle = True, num_workers = 0, pin
 def denorm(img_tensors):
     return img_tensors * stats[1][0] + stats[0][0]
 
-discriminator = nn.Sequential(
+discriminator = torch.compile(nn.Sequential(
     # input: 3 x 128 x 128
     nn.Conv2d(3, 64, kernel_size=4, stride=2, padding=1, bias=False),
     nn.BatchNorm2d(64),
@@ -74,9 +74,9 @@ discriminator = nn.Sequential(
 
     nn.Flatten(),
     nn.Sigmoid()
-).to(device)
+)).to(device)
 
-generator = nn.Sequential(
+generator = torch.compile(nn.Sequential(
     # in: latent_size x 1 x 1
 
     nn.ConvTranspose2d(latent_size, 512, kernel_size=4, stride=1, padding=0, bias=False),
@@ -102,7 +102,7 @@ generator = nn.Sequential(
     nn.ConvTranspose2d(64, 3, kernel_size=4, stride=2, padding=1, bias=False),
     nn.Tanh()
     # out: 3 x 64 x 64
-).to(device)
+)).to(device)
 
 
 def train_discriminator(real_images, opt_d):
